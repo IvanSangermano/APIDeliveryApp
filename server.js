@@ -1,15 +1,17 @@
-require('dotenv').config(); 
+require('dotenv').config() 
 
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
 
-const http  = require('http');
-const server = http.createServer(app);
+const http  = require('http')
+const server = http.createServer(app)
 
-const logger = require('morgan');
+const logger = require('morgan')
 const cors = require('cors')
 
 const passport = require('passport')
+
+const multer = require('multer')
 
 //IMPORT ROUTES
 const usersRoute = require('./routes/userRoutes')
@@ -19,20 +21,27 @@ const port = process.env.PORT || 3000
 
 //CONFIG APP
 app.use(cors());
+
 app.use(passport.initialize());
 app.use(passport.session())
 require('./config/passport')(passport)
 
 app.use(express.json());
+
 app.use(express.urlencoded({
     extended: true
 }));
 app.use(logger('dev'))
 app.disable('x-powered-by')
+
 app.set('port', port)
 
+const upload = multer({
+    storage: multer.memoryStorage()
+})
+
 //ROUTES
-usersRoute(app)
+usersRoute(app, upload)
 
 
 //START SERVER
