@@ -44,7 +44,6 @@ module.exports = {
                     session_token: `JWT ${token}`,
                     roles: JSON.parse(myUser.roles)
                 }
-
                 return res.status(201).json({
                     success: true,
                     message: 'El usuario fue autenticado',
@@ -123,6 +122,58 @@ module.exports = {
                     data: user
                 })
             })
+        })
+    },
+
+    async UpdateWithImage(req, res){
+        const user = JSON.parse(req.body.user)
+
+        const files = req.files;
+
+        if(files.length > 0) {
+            const path = `image_${Date.now}`
+            const url = await storage(files[0], path)
+
+            if(url != undefined && url != null){
+                user.image = url
+            }
+        }
+        
+        User.Update(user, (err, data) => {
+
+            if(err) {
+                return res.status(501).json({
+                    success: false,
+                    message: 'Hubo un error con la actualizacion del usuario',
+                    error: err
+                })
+            }
+            return res.status(201).json({
+                success: true,
+                message: 'El usuario se ha actualizado correctamente',
+                data: user
+            })
+
+        })
+    },
+
+    async UpdateWithoutImage(req, res){
+        const user = req.body
+
+        User.UpdateWithoutImage(user, (err, data) => {
+            if(err) {
+                return res.status(501).json({
+                    success: false,
+                    message: 'Hubo un error con la actualizacion del usuario',
+                    error: err
+                })
+            }
+            return res.status(201).json({
+                success: true,
+                message: 'El usuario se ha actualizado correctamente',
+                data: user
+            })
+
         })
     },
 
