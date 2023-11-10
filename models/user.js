@@ -45,7 +45,7 @@ User.findById = (id, result) => {
                 console.log('Error: ', err)
                 result(err, null)
             } else {
-                console.log('IUsuario obtenido: ', user[0])
+                console.log('Usuario obtenido: ', user[0])
                 result(null, user[0])
             }
         }

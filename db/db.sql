@@ -31,6 +31,15 @@ CREATE TABLE user_has_roles(
  PRIMARY KEY(id_user, id_rol)
 );
 
+CREATE TABLE categories(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(180) NOT NULL,
+    description TEXT NOT NULL,
+    image VARCHAR(255) NULL,
+    created_at TIMESTAMP(0) NOT NULL,
+    updated_at TIMESTAMP(0) NOT NULL
+);
+
 INSERT INTO roles(
 name,
 route,

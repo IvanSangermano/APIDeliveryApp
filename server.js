@@ -15,6 +15,7 @@ const multer = require('multer')
 
 //IMPORT ROUTES
 const usersRoute = require('./routes/userRoutes')
+const categoriesRoutes = require('./routes/categoryRoutes')
 
 //PORT
 const port = process.env.PORT || 3000
@@ -42,6 +43,7 @@ const upload = multer({
 
 //ROUTES
 usersRoute(app, upload)
+categoriesRoutes(app, upload)
 
 
 //START SERVER
