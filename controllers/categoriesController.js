@@ -3,7 +3,7 @@ const storage = require('../utils/cloud_storage')
 
 module.exports = {
 
-    async getAll(req, res){
+    getAll(req, res){
         Category.getAll((err, data) => {
             if(err) {
                 return res.status(501).json({
@@ -80,7 +80,7 @@ module.exports = {
         })
     },
 
-    async update(req, res){
+    update(req, res){
         const category = req.body
         Category.update(category, (err, id) => {
 
@@ -100,7 +100,7 @@ module.exports = {
         })
     },
 
-    async delete(req, res){
+    delete(req, res){
         const id = req.params.id
         Category.delete(id, (err, data) => {
 

@@ -157,7 +157,7 @@ module.exports = {
         })
     },
 
-    async UpdateWithoutImage(req, res){
+    UpdateWithoutImage(req, res){
         const user = req.body
 
         User.UpdateWithoutImage(user, (err, data) => {
