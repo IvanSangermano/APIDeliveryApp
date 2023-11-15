@@ -17,6 +17,7 @@ const multer = require('multer')
 const usersRoute = require('./routes/userRoutes')
 const categoriesRoutes = require('./routes/categoryRoutes')
 const productsRoutes = require('./routes/productsRoutes')
+const addressRoutes = require('./routes/addressRoutes')
 
 //PORT
 const port = process.env.PORT || 3000
@@ -46,7 +47,7 @@ const upload = multer({
 usersRoute(app, upload)
 categoriesRoutes(app, upload)
 productsRoutes(app, upload)
-
+addressRoutes(app)
 
 //START SERVER
 server.listen(3000, "localhost", () => {
