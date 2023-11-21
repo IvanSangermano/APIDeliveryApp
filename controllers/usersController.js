@@ -59,6 +59,20 @@ module.exports = {
         })
     },
 
+    findDeliveryMan(req, res) {
+        User.findDeliveryMen((err, data) => {
+            if(err) {
+                return res.status(501).json({
+                    success: false,
+                    message: 'Hubo un error con el listado de usuarios "deliveries"',
+                    error: err
+                })
+            }
+
+            return res.status(201).json(data)
+        })
+    },
+
     register(req, res){
         const user = req.body;
         
@@ -75,7 +89,7 @@ module.exports = {
             return res.status(201).json({
                 success: true,
                 message: 'El registro se ha realizado correctamente',
-                data: data //ID del user
+                data: data
             })
         })
     },

@@ -13,11 +13,18 @@ const passport = require('passport')
 
 const multer = require('multer')
 
+const io = require('socket.io')(server)
+
+//IMPORT SOCKETS
+const ordersSocket = require('./sockets/ordersSocket')
+
 //IMPORT ROUTES
 const usersRoute = require('./routes/userRoutes')
 const categoriesRoutes = require('./routes/categoryRoutes')
 const productsRoutes = require('./routes/productsRoutes')
 const addressRoutes = require('./routes/addressRoutes')
+const ordersRoutes = require('./routes/orderRoutes')
+
 
 //PORT
 const port = process.env.PORT || 3000
@@ -39,6 +46,8 @@ app.disable('x-powered-by')
 
 app.set('port', port)
 
+ordersSocket(io)
+
 const upload = multer({
     storage: multer.memoryStorage()
 })
@@ -48,6 +57,7 @@ usersRoute(app, upload)
 categoriesRoutes(app, upload)
 productsRoutes(app, upload)
 addressRoutes(app)
+ordersRoutes(app)
 
 //START SERVER
 server.listen(3000, "localhost", () => {
