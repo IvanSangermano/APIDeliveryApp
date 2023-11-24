@@ -15,6 +15,12 @@ const multer = require('multer')
 
 const io = require('socket.io')(server)
 
+const mercadopago = require('mercadopago')
+mercadopago.configure({
+    sandbox: true,
+    access_token: "TEST-2633768026562283-112216-1867e1e2623b2ff137e4f5b9af5c5c41-229371624"
+})
+
 //IMPORT SOCKETS
 const ordersSocket = require('./sockets/ordersSocket')
 
@@ -24,6 +30,7 @@ const categoriesRoutes = require('./routes/categoryRoutes')
 const productsRoutes = require('./routes/productsRoutes')
 const addressRoutes = require('./routes/addressRoutes')
 const ordersRoutes = require('./routes/orderRoutes')
+const mercadoPagoRoutes = require('./routes/mercadoPagoRoutes')
 
 
 //PORT
@@ -58,6 +65,7 @@ categoriesRoutes(app, upload)
 productsRoutes(app, upload)
 addressRoutes(app)
 ordersRoutes(app)
+mercadoPagoRoutes(app)
 
 //START SERVER
 server.listen(3000, "localhost", () => {
