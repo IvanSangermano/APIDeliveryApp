@@ -8,6 +8,7 @@ CREATE TABLE users(
     phone VARCHAR(90) NOT NULL UNIQUE,
     image VARCHAR(255) NULL,
     password VARCHAR(90) NOT NULL,
+    notification_token VARCHAR(255) NULL AFTER,
     created_at TIMESTAMP(0) NOT NULL,
 	updated_at TIMESTAMP(0) NOT NULL
 );

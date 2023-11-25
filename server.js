@@ -31,6 +31,7 @@ const productsRoutes = require('./routes/productsRoutes')
 const addressRoutes = require('./routes/addressRoutes')
 const ordersRoutes = require('./routes/orderRoutes')
 const mercadoPagoRoutes = require('./routes/mercadoPagoRoutes')
+const stripeRoutes = require('./routes/stripeRoutes')
 
 
 //PORT
@@ -66,6 +67,7 @@ productsRoutes(app, upload)
 addressRoutes(app)
 ordersRoutes(app)
 mercadoPagoRoutes(app)
+stripeRoutes(app)
 
 //START SERVER
 server.listen(3000, "localhost", () => {

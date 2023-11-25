@@ -251,4 +251,33 @@ User.UpdateWithoutImage = (user, result) => {
     )
 }
 
+User.UpdateNotificationToken = (id, token, result) => {
+    const sql = `
+        UPDATE
+            users
+        SET
+            notification_token = ?,
+            updated_at = ?
+        WHERE
+            id = ?
+    `
+    db.query(
+        sql,
+        [
+            token,
+            new DataTransfer(),
+            id
+        ],
+        (err, res) => {
+            if(err) {
+                console.log('Error: ', err)
+                result(err, null)
+            } else {
+                console.log('Id del usuario actualizado: ', id)
+                result(null, id)
+            }
+        }
+    )
+} 
+
 module.exports = User;
