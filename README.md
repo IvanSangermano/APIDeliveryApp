@@ -13,10 +13,10 @@ npm install
 For this step it is necessary to have created a database within MySQL. Once created, open a new SQL tab by copying the code from the **db.sql** file and executing it to create the tables. Then create a file in the root folder called **".env"**, inside this replace the variables with their references explained in the **".env.example"** file
 
 ### Third step
-Read **serviceAccountKey.example** and follow the steps.
+Read **"serviceAccountKey.example"** and follow the steps.
 
 ### Fourth step
-Within the "Config" folder, replace the **secretorkey** variables with a random variable generated on any website Internet page (this key has to be conveniently 504bits)
+Within the "Config" folder, replace the **"secretorkey"** variables with a random variable generated on any website Internet page (this key has to be conveniently 504bits)
 
 #### TO GENERATE A KEY IN FIREBASE
 To generate this file you must create a storage in Firebase.
