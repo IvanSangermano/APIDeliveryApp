@@ -99,7 +99,7 @@ module.exports = {
             })
         })
     },
-
+    
     delete(req, res){
         const id = req.params.id
         Category.delete(id, (err, data) => {
